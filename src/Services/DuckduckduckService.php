@@ -5,8 +5,8 @@ namespace Futurfuturfuturfutur\Duckduckduck\Services;
 use Futurfuturfuturfutur\Duckduckduck\Services\Request\RequestService;
 use Futurfuturfuturfutur\Duckduckduck\Services\Response\ResponseService;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
 use Illuminate\Support\Facades\File;
+use Symfony\Component\HttpFoundation\Response;
 
 class DuckduckduckService
 {
