@@ -23,6 +23,7 @@ class DuckduckduckService
     private function formatCall(RequestService $request, ResponseService $response)
     {
         return [
+            'server' => $request->getServer(),
             'path' => $request->getPath(),
             'headers' => $request->getHeaders(),
             'method' => $request->getMethod(),
@@ -36,7 +37,7 @@ class DuckduckduckService
 
     private function save($call)
     {
-        File::put(base_path('.duckduckduck.cache'), json_encode($call));
+        File::put(base_path('duckduckduck/.duckduckduck.cache'), json_encode($call));
     }
 
 }
