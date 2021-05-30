@@ -6,6 +6,7 @@ use Futurfuturfuturfutur\Duckduckduck\Services\Format\FormatServiceInterface;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\File;
+use Symfony\Component\Process\Process;
 
 class GenerateCommand extends Command
 {
@@ -44,7 +45,8 @@ class GenerateCommand extends Command
         $this->beforeTests($formatService);
         $this->info('Running PHPUnit tests..');
 
-        Artisan::call('test');
+        $process = new Process(['php', 'artisan', 'test', '--testsuite=Feature']);
+        $process->run();
 
         $this->afterTests();
         $this->info('API documentation successfully auto generated!');
@@ -52,12 +54,12 @@ class GenerateCommand extends Command
 
     private function beforeTests($formatService)
     {
-        File::put(base_path('.duckduckduck.cache'), '{}');
+        File::put(base_path('duckduckduck/.duckduckduck.cache'), '{}');
         $formatService->resetConfig();
     }
 
     private function afterTests()
     {
-        File::delete(base_path('.duckduckduck.cache'));
+        File::delete(base_path('duckduckduck/.duckduckduck.cache'));
     }
 }
