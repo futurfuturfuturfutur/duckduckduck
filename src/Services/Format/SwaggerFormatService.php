@@ -19,13 +19,19 @@ class SwaggerFormatService extends FormatServiceAbstract implements FormatServic
 
     protected function generateConfigPath()
     {
-        $this->configPath = base_path(self::CONFIG_NAME);
+        $this->configPath = base_path('duckduckduck/' . self::CONFIG_NAME);
     }
 
     protected function getConfigTemplate()
     {
         return [
             'openapi' => '3.0.0',
+            'servers' => [
+                [
+                    'url' => $this->call['server']['SERVER_NAME'] .
+                    (Config::get('duckduckduck.public_port') != '80' ? ":" . Config::get('duckduckduck.public_port') : "")
+                ]
+            ],
             'info' => [
                 'description' => Config::get('duckduckduck.description'),
                 'version' => Config::get('duckduckduck.version'),
