@@ -31,7 +31,7 @@ class DuckduckduckMiddleware
     {
         $response = $next($request);
 
-        if(App::runningInConsole() && File::exists(base_path('.duckduckduck.cache')))
+        if(App::runningInConsole() && File::exists(base_path('duckduckduck/.duckduckduck.cache')))
             $this->duckduckduckService->parse($request, $response);
 
         return $response;
