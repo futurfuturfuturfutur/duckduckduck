@@ -44,4 +44,10 @@ class RequestService
     {
         return Route::current()->uri;
     }
+
+    public function getServer()
+    {
+        return $this->request->server->all();
+    }
+
 }
