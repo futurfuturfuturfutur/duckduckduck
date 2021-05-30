@@ -46,6 +46,13 @@ class InitCommand extends Command
             '--tag' => 'config'
         ]);
 
-        $this->info('Package successfully initialized. Checkout duckduckduck config file.');
+        $this->call('vendor:publish', [
+            '--provider' => DuckduckduckServiceProvider::class,
+            '--tag' => 'package-dir'
+        ]);
+
+        $this->line('Package successfully initialized.');
+        $this->info('Root directory /duckduckduck was created with initial example documentations in it.');
+        $this->info('Duckduckduck config file was created inside the default /config folder.');
     }
 }
