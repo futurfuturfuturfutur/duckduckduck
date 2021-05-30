@@ -1,6 +1,6 @@
 {
     "name": "futurfuturfuturfutur/duckduckduck",
-    "description": "A description for duckduckduck.",
+    "description": "Laravel package able to auto generate API documentation through tests, without garbage comments inside the code base.",
     "type": "package",
     "license": "MIT",
     "keywords": [
