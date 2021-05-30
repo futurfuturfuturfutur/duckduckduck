@@ -6,15 +6,16 @@ use Futurfuturfuturfutur\Duckduckduck\Services\Format\FormatServiceInterface;
 use Futurfuturfuturfutur\Duckduckduck\Services\PhpDocParserService;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\File;
+use PHPUnit\Runner\BaseTestRunner;
 
 trait DuckduckduckTestCase
 {
     protected function tearDown(): void
     {
-        if(App::runningInConsole() && File::exists(base_path('.duckduckduck.cache'))) {
-            $cache = json_decode(File::get(base_path('.duckduckduck.cache')), true);
+        if(App::runningInConsole() && File::exists(base_path('duckduckduck/.duckduckduck.cache'))) {
+            $cache = json_decode(File::get(base_path('duckduckduck/.duckduckduck.cache')), true);
             if(!empty($cache)) {
-                if (!$this->hasFailed()) {
+                if ($this->getStatus() == BaseTestRunner::STATUS_PASSED) {
                     $service = App::make(FormatServiceInterface::class);
 
                     $testParams = $this->getTestParams();
@@ -25,7 +26,7 @@ trait DuckduckduckTestCase
                 }
             }
 
-            File::put(base_path('.duckduckduck.cache'), '{}');
+            File::put(base_path('duckduckduck/.duckduckduck.cache'), '{}');
         }
 
         parent::tearDown();
