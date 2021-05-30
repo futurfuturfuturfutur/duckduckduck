@@ -42,6 +42,7 @@ class DuckduckduckServiceProvider extends ServiceProvider
     private function publishConfig()
     {
         $this->publishes([__DIR__ . '/../config/duckduckduck.php' => config_path('duckduckduck.php')], 'config');
+        $this->publishes([__DIR__ . '/../duckduckduck' => base_path('duckduckduck')], 'package-dir');
     }
 
     private function registerCommands()
