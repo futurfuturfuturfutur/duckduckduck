@@ -28,8 +28,7 @@ class SwaggerFormatService extends FormatServiceAbstract implements FormatServic
             'openapi' => '3.0.0',
             'servers' => [
                 [
-                    'url' => $this->call['server']['SERVER_NAME'] .
-                    (Config::get('duckduckduck.public_port') != '80' ? ":" . Config::get('duckduckduck.public_port') : "")
+                    'url' => $this->call['server']['HTTP_HOST']
                 ]
             ],
             'info' => [

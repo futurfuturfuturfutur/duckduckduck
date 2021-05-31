@@ -3,6 +3,5 @@
 return [
     'title' => 'Name of the API documentation',
     'description' => 'Description of the API',
-    'version' => '1.0.0',
-    'public_port' => '80'
+    'version' => '1.0.0'
 ];
