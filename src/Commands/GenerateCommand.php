@@ -46,6 +46,7 @@ class GenerateCommand extends Command
         $this->info('Running PHPUnit tests..');
 
         $process = new Process(['php', 'artisan', 'test', '--testsuite=Feature']);
+        $process->setTimeout(3600);
         $process->run();
 
         $this->afterTests();
